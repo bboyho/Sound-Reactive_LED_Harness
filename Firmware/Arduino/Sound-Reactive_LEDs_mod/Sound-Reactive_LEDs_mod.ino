@@ -41,7 +41,7 @@ uint16_t gradient = 0; //Used to iterate and loop through each color palette gra
 //     Make sure you add/remove values accordingly if you add/remove a color function in the switch-case in ColorPalette().
 uint16_t thresholds[] = {1529, 1019, 764, 764, 764, 1274};
 
-uint8_t palette = 0;  //Holds the current color palette.
+uint8_t palette = 2;  //Holds the current color palette.
 uint8_t visual = 0;   //Holds the current visual being displayed.
 uint8_t volume = 0;   //Holds the volume level read from the sound detector.
 uint8_t last = 0;     //Holds the value of volume from the previous loop() pass.
@@ -103,9 +103,8 @@ void loop() {  //This is where the magic happens. This loop produces each frame 
 
   volume = analogRead(AUDIO_PIN);       //Record the volume level from the sound detector
   //knob = analogRead(KNOB_PIN) / 1023.0; //Record how far the trimpot is twisted
-  Serial.print("fkhfhg =" );
   //Serial.println(analogRead(KNOB_PIN));
-  knob = 75;
+  knob = 550/1023.0;
 
   //Sets a threshold for volume.
   //  In practice I've found noise can get up to 15, so if it's lower, the visual thinks it's silent.
@@ -151,7 +150,8 @@ void loop() {  //This is where the magic happens. This loop produces each frame 
 
   //Visualize();   //Calls the appropriate visualization to be displayed with the globals as they are.
   Paintball();
-
+  //Traffic();
+  //Snake();
   gradient++;    //Increments gradient
 
   last = volume; //Records current volume for next pass
